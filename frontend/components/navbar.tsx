@@ -14,10 +14,9 @@ export function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 px-8 md:px-28 py-4 flex items-center justify-between"
     >
       <div className="flex items-center gap-3">
-        <div className="flex items-center justify-center">
-          <div className="w-7 h-7 rounded-full border-2 border-foreground/60 flex items-center justify-center">
-            <div className="w-3 h-3 rounded-full border border-foreground/60" />
-          </div>
+        <div className="w-10 h-10 rounded-full flex items-center justify-center liquid-glass">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.svg" alt="God Eye logo" className="w-5 h-5 object-contain" />
         </div>
   <span className="font-semibold text-base tracking-tight">God Eye</span>
       </div>

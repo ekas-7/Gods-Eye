@@ -1,7 +1,8 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { SearchSection } from "@/components/search-section";
-import { MissionSection } from "@/components/mission-section";
+
+import { InterludeSection } from "@/components/interlude-section";
 import { SolutionSection } from "@/components/solution-section";
 import { CtaSection } from "@/components/cta-section";
 
@@ -12,7 +13,7 @@ export default function Home() {
       <main className="flex flex-col">
         <Hero />
         <SearchSection />
-        <MissionSection />
+        <InterludeSection />
         <SolutionSection />
         <CtaSection />
       </main>

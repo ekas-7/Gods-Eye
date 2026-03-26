@@ -4,24 +4,24 @@ import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
 
 const solutionVideo =
-   "/missionSection.mp4";
+   "/missonSection.mp4";
 
 const features = [
   {
-    title: "Globe View",
-    description: "Explore nearby clusters and see who shares your interests on a living globe.",
+    title: "Recruiters",
+    description: "Find candidates who genuinely fit your team's culture and skills — not just keyword matches.",
   },
   {
-    title: "Node Graph",
-    description: "Understand relationships, overlaps, and second-degree connections visually.",
+    title: "Soulmates",
+    description: "Meet people who share your values and passions, not just your zip code.",
   },
   {
-    title: "AI Matching",
-    description: "Embedding-based recommendations rank the most relevant people near you.",
+    title: "Friends",
+    description: "Discover real friendships with people nearby who vibe with who you actually are.",
   },
   {
-    title: "Privacy Guardrails",
-    description: "Bucketed locations, opt-in discovery, and mutual reveal to keep users safe.",
+    title: "Collaborators",
+    description: "Link up with builders, creatives, and founders who are working on the same problems as you.",
   },
 ];
 
@@ -36,7 +36,7 @@ export function SolutionSection() {
           {...fadeUp(0.05)}
           className="text-4xl md:text-6xl font-medium max-w-4xl"
         >
-          The platform for <span className="italic font-serif font-normal">real</span> connections
+          If you don't connect with the right people,<span className="italic font-serif font-normal">someone else</span> will.
         </motion.h3>
       </div>
 

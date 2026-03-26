@@ -77,7 +77,7 @@ export function SearchSection() {
       </div>
 
       <motion.p {...fadeUp(0.25)} className="text-muted-foreground text-sm">
-        If you don&apos;t connect with the right people, someone else will.
+        Cutting edge tech + human curation = the most magical, serendipitous, and real connections you’ve ever made.
       </motion.p>
     </section>
   );
