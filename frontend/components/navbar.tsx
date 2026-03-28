@@ -2,8 +2,16 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Show, UserButton, SignInButton, SignUpButton } from "@clerk/nextjs";
+import Link from "next/link";
 
-const links = ["Home", "Globe", "Graph", "Onboarding", "Vision"];
+const links: { label: string; href: string }[] = [
+  { label: "Home", href: "/" },
+  { label: "Globe", href: "/discover" },
+  { label: "Graph", href: "/graph" },
+  { label: "Onboarding", href: "/onboarding" },
+  { label: "Vision", href: "#vision" },
+];
 
 export function Navbar() {
   return (
@@ -23,16 +31,34 @@ export function Navbar() {
 
       <div className="hidden md:flex items-center text-muted-foreground text-sm gap-2 font-medium opacity-80 tracking-tight">
         {links.map((link, idx) => (
-          <div key={link} className="flex items-center gap-2">
-            <button className="hover:text-foreground transition-colors text-[14px] font-medium tracking-tight">
-              {link}
-            </button>
+          <div key={link.label} className="flex items-center gap-2">
+            <Link
+              href={link.href}
+              className="hover:text-foreground transition-colors text-[14px] font-medium tracking-tight"
+            >
+              {link.label}
+            </Link>
             {idx !== links.length - 1 && <span className="text-xs">•</span>}
           </div>
         ))}
       </div>
 
       <div className="flex items-center gap-3">
+        <Show when="signed-out">
+          <SignInButton>
+            <button className="px-4 py-1.5 rounded-full text-sm font-medium liquid-glass text-foreground/80 hover:text-foreground transition-colors">
+              Sign in
+            </button>
+          </SignInButton>
+          <SignUpButton>
+            <button className="px-4 py-1.5 rounded-full text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity">
+              Sign up
+            </button>
+          </SignUpButton>
+        </Show>
+        <Show when="signed-in">
+          <UserButton />
+        </Show>
         {[
           {
             label: "Instagram",

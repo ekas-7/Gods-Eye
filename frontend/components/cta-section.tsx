@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
 import Image from "next/image";
+import Link from "next/link";
 
 // use a static image from the public folder (note: folder is `assests` in public/)
 const imageSrc = "/assests/footer.png";
@@ -40,9 +41,9 @@ export function CtaSection() {
             <button className="bg-foreground text-background rounded-lg px-8 py-3.5 text-sm font-medium">
               Join Waitlist
             </button>
-            <button className="liquid-glass rounded-lg px-8 py-3.5 text-sm font-medium">
+            <Link href="/discover" className="liquid-glass rounded-lg px-8 py-3.5 text-sm font-medium">
               View Globe
-            </button>
+            </Link>
           </motion.div>
         </div>
 

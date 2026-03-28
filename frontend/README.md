@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gods-Eye — Frontend
 
-## Getting Started
+Next.js 16 app. See the [root README](../README.md) for full project context.
 
-First, run the development server:
+## Setup
 
 ```bash
+npm install
+cp .env.local.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_...
+CLERK_SECRET_KEY=sk_...
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+No map token needed — uses OpenFreeMap (free, no account).
 
-## Learn More
+## Key Files
 
-To learn more about Next.js, take a look at the following resources:
+| File | Purpose |
+|---|---|
+| `app/layout.tsx` | Root layout, ClerkProvider, post-auth redirect to `/discover` |
+| `app/page.tsx` | Landing page |
+| `app/discover/page.tsx` | Protected discover page (redirects to `/` if not authed) |
+| `components/map-view.tsx` | MapLibre GL JS 3D map, centered on user's GPS location |
+| `middleware.ts` | Clerk auth middleware |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Map
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Uses **MapLibre GL JS** with **OpenFreeMap Liberty** tiles — fully open source, no API key.
 
-## Deploy on Vercel
+- Requests browser geolocation on mount
+- 60° pitch + 3D building extrusions for depth
+- White pulse marker at user's coordinates
+- Falls back to Bengaluru if location denied
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Auth Flow
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Clerk handles auth. After sign-in or sign-up, users are force-redirected to `/discover` via `signInForceRedirectUrl` / `signUpForceRedirectUrl` on `ClerkProvider`.
+
+The `/discover` route does a server-side auth check and redirects back to `/` if unauthenticated.

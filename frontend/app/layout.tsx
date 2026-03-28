@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
@@ -20,13 +21,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-  <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body
-        suppressHydrationWarning
-        className="min-h-full flex flex-col bg-background text-foreground relative"
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider signInForceRedirectUrl="/discover" signUpForceRedirectUrl="/discover">
+      <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+        <body
+          suppressHydrationWarning
+          className="min-h-full flex flex-col bg-background text-foreground relative"
+        >
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
